@@ -20,6 +20,7 @@ use Gears\CQRS\Command;
 use Interop\Queue\PsrContext;
 use Interop\Queue\PsrDestination;
 use Interop\Queue\PsrMessage;
+use Interop\Queue\PsrProducer;
 
 class QueueInteropCommandQueue extends AbstractCommandQueue
 {
@@ -57,7 +58,7 @@ class QueueInteropCommandQueue extends AbstractCommandQueue
     {
         // @codeCoverageIgnoreStart
         try {
-            $this->context->createProducer()->send($this->destination, $this->getQueueMessage($command));
+            $this->getMessageProducer()->send($this->destination, $this->getMessage($command));
         } catch (\Exception $exception) {
             throw new CommandQueueException('Failure enqueueing command', 0, $exception);
         }
@@ -65,14 +66,24 @@ class QueueInteropCommandQueue extends AbstractCommandQueue
     }
 
     /**
-     * Get queue message from command.
+     * Get message from command.
      *
      * @param Command $command
      *
      * @return PsrMessage
      */
-    protected function getQueueMessage(Command $command): PsrMessage
+    protected function getMessage(Command $command): PsrMessage
     {
         return $this->context->createMessage($this->getSerializedCommand($command));
+    }
+
+    /**
+     * Get message producer.
+     *
+     * @return PsrProducer
+     */
+    protected function getMessageProducer(): PsrProducer
+    {
+        return $this->context->createProducer();
     }
 }
