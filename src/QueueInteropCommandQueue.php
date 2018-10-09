@@ -29,12 +29,12 @@ class QueueInteropCommandQueue extends AbstractCommandQueue
      *
      * @var PsrContext
      */
-    private $context;
+    protected $context;
 
     /**
      * @var PsrDestination
      */
-    private $destination;
+    protected $destination;
 
     /**
      * EnqueueCommandBus constructor.
