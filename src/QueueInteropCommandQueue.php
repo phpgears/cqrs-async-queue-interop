@@ -17,22 +17,22 @@ use Gears\CQRS\Async\AbstractCommandQueue;
 use Gears\CQRS\Async\Exception\CommandQueueException;
 use Gears\CQRS\Async\Serializer\CommandSerializer;
 use Gears\CQRS\Command;
-use Interop\Queue\PsrContext;
-use Interop\Queue\PsrDestination;
-use Interop\Queue\PsrMessage;
-use Interop\Queue\PsrProducer;
+use Interop\Queue\Context;
+use Interop\Queue\Destination;
+use Interop\Queue\Message;
+use Interop\Queue\Producer;
 
 class QueueInteropCommandQueue extends AbstractCommandQueue
 {
     /**
      * Queue context.
      *
-     * @var PsrContext
+     * @var Context
      */
     protected $context;
 
     /**
-     * @var PsrDestination
+     * @var Destination
      */
     protected $destination;
 
@@ -40,10 +40,10 @@ class QueueInteropCommandQueue extends AbstractCommandQueue
      * EnqueueCommandBus constructor.
      *
      * @param CommandSerializer $serializer
-     * @param PsrContext        $context
-     * @param PsrDestination    $destination
+     * @param Context           $context
+     * @param Destination       $destination
      */
-    public function __construct(CommandSerializer $serializer, PsrContext $context, PsrDestination $destination)
+    public function __construct(CommandSerializer $serializer, Context $context, Destination $destination)
     {
         parent::__construct($serializer);
 
@@ -70,9 +70,9 @@ class QueueInteropCommandQueue extends AbstractCommandQueue
      *
      * @param Command $command
      *
-     * @return PsrMessage
+     * @return Message
      */
-    protected function getMessage(Command $command): PsrMessage
+    protected function getMessage(Command $command): Message
     {
         return $this->context->createMessage($this->getSerializedCommand($command));
     }
@@ -80,9 +80,9 @@ class QueueInteropCommandQueue extends AbstractCommandQueue
     /**
      * Get message producer.
      *
-     * @return PsrProducer
+     * @return Producer
      */
-    protected function getMessageProducer(): PsrProducer
+    protected function getMessageProducer(): Producer
     {
         return $this->context->createProducer();
     }
