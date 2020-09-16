@@ -30,15 +30,9 @@ Require composer autoload file
 require './vendor/autoload.php';
 ```
 
-### Asynchronous Commands Bus
-
-Please review [phpgears/cqrs-async](https://github.com/phpgears/cqrs-async) for more information on async command bus
-
 ```php
-use Gears\CQRS\Async\AsyncCommandBus;
 use Gears\CQRS\Async\QueueInterop\QueueInteropCommandQueue;
 use Gears\CQRS\Async\Serializer\JsonCommandSerializer;
-use Gears\CQRS\Async\Discriminator\ParameterCommandDiscriminator;
 
 /* @var \Gears\CQRS\CommandBus $commandBus */
 /* @var \Interop\Queue\PsrContext $context */
@@ -46,18 +40,14 @@ use Gears\CQRS\Async\Discriminator\ParameterCommandDiscriminator;
 
 $commandQueue = new QueueInteropCommandQueue(new JsonCommandSerializer(), $context, $destination);
 
-$asyncCommandBus new AsyncCommandBus(
-    $commandBus,
-    $commandQueue,
-    new ParameterCommandDiscriminator('async')
-);
-
-$asyncCommand = new CustomCommand(['async' => true]);
-
-$asyncCommandBus->handle($asyncCommand);
+// use $commandQueue in command bus implementation
 ```
 
 There are some queue-interop implementations available such as [Enqueue](https://github.com/php-enqueue/enqueue) which supports an incredible number of message queues
+
+### Asynchronicity
+
+Please review [phpgears/cqrs-async](https://github.com/phpgears/cqrs-async) for more information on async command bus
 
 ## Contributing
 
