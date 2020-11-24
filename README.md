@@ -2,7 +2,7 @@
 [![Latest Version](https://img.shields.io/packagist/v/phpgears/cqrs-async-queue-interop.svg?style=flat-square)](https://packagist.org/packages/phpgears/cqrs-async-queue-interop)
 [![License](https://img.shields.io/github/license/phpgears/cqrs-async-queue-interop.svg?style=flat-square)](https://github.com/phpgears/cqrs-async-queue-interop/blob/master/LICENSE)
 
-[![Build Status](https://img.shields.io/travis/phpgears/cqrs-async-queue-interop.svg?style=flat-square)](https://travis-ci.org/phpgears/cqrs-async-queue-interop)
+[![Build Status](https://img.shields.io/travis/com/phpgears/cqrs-async-queue-interop.svg?style=flat-square)](https://travis-ci.com/github/phpgears/cqrs-async-queue-interop)
 [![Style Check](https://styleci.io/repos/150907907/shield)](https://styleci.io/repos/150907907)
 [![Code Quality](https://img.shields.io/scrutinizer/g/phpgears/cqrs-async-queue-interop.svg?style=flat-square)](https://scrutinizer-ci.com/g/phpgears/cqrs-async-queue-interop)
 [![Code Coverage](https://img.shields.io/coveralls/phpgears/cqrs-async-queue-interop.svg?style=flat-square)](https://coveralls.io/github/phpgears/cqrs-async-queue-interop)
