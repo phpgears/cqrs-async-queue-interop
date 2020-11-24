@@ -60,7 +60,7 @@ class QueueInteropCommandQueue extends AbstractCommandQueue
         try {
             $this->getMessageProducer()->send($this->destination, $this->getMessage($command));
         } catch (\Exception $exception) {
-            throw new CommandQueueException('Failure enqueueing command', 0, $exception);
+            throw new CommandQueueException('Failure enqueueing command.', 0, $exception);
         }
         // @codeCoverageIgnoreEnd
     }
